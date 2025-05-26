@@ -1,0 +1,398 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-05-26 11:27:18.513541",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "job_card_details",
+  "job_card_id",
+  "priority",
+  "status",
+  "column_break_1",
+  "job_date",
+  "expected_completion_date",
+  "actual_completion_date",
+  "vehicle_and_customer",
+  "vehicle",
+  "vehicle_registration",
+  "vehicle_make_model",
+  "column_break_2",
+  "customer",
+  "customer_name",
+  "contact_number",
+  "vehicle_condition",
+  "odometer_reading",
+  "fuel_level",
+  "column_break_3",
+  "service_type",
+  "customer_complaint",
+  "initial_inspection_notes",
+  "service_assignment",
+  "assigned_technician",
+  "technician_name",
+  "column_break_4",
+  "service_advisor",
+  "estimated_hours",
+  "actual_hours",
+  "services_section",
+  "services",
+  "parts_section",
+  "parts_used",
+  "cost_summary",
+  "total_labor_cost",
+  "total_parts_cost",
+  "column_break_5",
+  "other_charges",
+  "discount_amount",
+  "total_amount",
+  "completion_details",
+  "work_completed",
+  "quality_check_notes",
+  "column_break_6",
+  "next_service_recommendation",
+  "warranty_period",
+  "additional_info",
+  "internal_notes",
+  "sales_invoice",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "JOB-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "JOB-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "job_card_details",
+   "fieldtype": "Section Break",
+   "label": "Job Card Details"
+  },
+  {
+   "fieldname": "job_card_id",
+   "fieldtype": "Data",
+   "label": "Job Card ID",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nConfirmed\nIn Progress\nCompleted\nDelivered\nCancelled",
+   "reqd": 1
+  },
+  {
+   "default": "Medium",
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Priority",
+   "options": "Low\nMedium\nHigh\nUrgent"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "job_date",
+   "fieldtype": "Date",
+   "label": "Job Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "expected_completion_date",
+   "fieldtype": "Datetime",
+   "label": "Expected Completion Date",
+   "reqd": 0
+  },
+  {
+   "fieldname": "actual_completion_date",
+   "fieldtype": "Datetime",
+   "label": "Actual Completion Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vehicle_and_customer",
+   "fieldtype": "Section Break",
+   "label": "Vehicle and Customer Information"
+  },
+  {
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vehicle",
+   "options": "Vehicle",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "vehicle.license_plate",
+   "fieldname": "vehicle_registration",
+   "fieldtype": "Data",
+   "label": "Registration Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vehicle_make_model",
+   "fieldtype": "Data",
+   "label": "Make/Model",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "vehicle.custom_owner",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Data",
+   "label": "Contact Number"
+  },
+  {
+   "fieldname": "vehicle_condition",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Condition & Instructions"
+  },
+  {
+   "fieldname": "odometer_reading",
+   "fieldtype": "Int",
+   "label": "Current Odometer Reading (KM)",
+   "reqd": 1
+  },
+  {
+   "default": "1/2 Tank",
+   "fieldname": "fuel_level",
+   "fieldtype": "Select",
+   "label": "Fuel Level",
+   "options": "Empty\n1/4 Tank\n1/2 Tank\n3/4 Tank\nFull Tank"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "service_type",
+   "fieldtype": "Select",
+   "label": "Service Type",
+   "options": "Regular Maintenance\nRepair\nInspection\nWarranty\nAccident Repair",
+   "reqd": 0
+  },
+  {
+   "fieldname": "customer_complaint",
+   "fieldtype": "Text Editor",
+   "label": "Customer Complaint/Instructions"
+  },
+  {
+   "fieldname": "initial_inspection_notes",
+   "fieldtype": "Text Editor",
+   "label": "Initial Inspection Notes"
+  },
+  {
+   "fieldname": "service_assignment",
+   "fieldtype": "Section Break",
+   "label": "Service Assignment"
+  },
+  {
+   "fieldname": "assigned_technician",
+   "fieldtype": "Link",
+   "label": "Primary Technician",
+   "options": "Employee",
+   "reqd": 0
+  },
+  {
+   "fetch_from": "assigned_technician.employee_name",
+   "fieldname": "technician_name",
+   "fieldtype": "Data",
+   "label": "Technician Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "service_advisor",
+   "fieldtype": "Link",
+   "label": "Service Advisor",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "estimated_hours",
+   "fieldtype": "Float",
+   "label": "Estimated Hours",
+   "precision": "2"
+  },
+  {
+   "fieldname": "actual_hours",
+   "fieldtype": "Float",
+   "label": "Actual Hours",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "services_section",
+   "fieldtype": "Section Break",
+   "label": "Services to Perform"
+  },
+  {
+   "fieldname": "services",
+   "fieldtype": "Table",
+   "label": "Services",
+   "options": "Job Card Service"
+  },
+  {
+   "fieldname": "parts_section",
+   "fieldtype": "Section Break",
+   "label": "Parts Used"
+  },
+  {
+   "fieldname": "parts_used",
+   "fieldtype": "Table",
+   "label": "Parts Used",
+   "options": "Job Card Parts"
+  },
+  {
+   "fieldname": "cost_summary",
+   "fieldtype": "Section Break",
+   "label": "Cost Summary"
+  },
+  {
+   "fieldname": "total_labor_cost",
+   "fieldtype": "Currency",
+   "label": "Total Labor Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_parts_cost",
+   "fieldtype": "Currency",
+   "label": "Total Parts Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "other_charges",
+   "fieldtype": "Currency",
+   "label": "Other Charges"
+  },
+  {
+   "fieldname": "discount_amount",
+   "fieldtype": "Currency",
+   "label": "Discount Amount"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "completion_details",
+   "fieldtype": "Section Break",
+   "label": "Completion Details"
+  },
+  {
+   "fieldname": "work_completed",
+   "fieldtype": "Text Editor",
+   "label": "Work Completed"
+  },
+  {
+   "fieldname": "quality_check_notes",
+   "fieldtype": "Text Editor",
+   "label": "Quality Check Notes"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "next_service_recommendation",
+   "fieldtype": "Text",
+   "label": "Next Service Recommendation"
+  },
+  {
+   "default": "30",
+   "fieldname": "warranty_period",
+   "fieldtype": "Int",
+   "label": "Warranty Period (Days)"
+  },
+  {
+   "fieldname": "additional_info",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "internal_notes",
+   "fieldtype": "Text Editor",
+   "label": "Internal Notes"
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Data",
+   "label": "Sales Invoice",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Garage Job Card",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-05-26 13:44:51.163402",
+ "modified_by": "Administrator",
+ "module": "Garage Management",
+ "name": "Garage Job Card",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
