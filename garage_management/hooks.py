@@ -245,3 +245,14 @@ export_python_type_annotations = True
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = [
+    {"doctype": "Client Script"},
+    {
+        "doctype": "Custom Field",
+        "filters": {"module": "Garage Management"}
+    },
+    {
+        "doctype": "Property Setter",
+        "filters": {"module": "Garage Management"}
+    },
+]

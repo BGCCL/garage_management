@@ -1,0 +1,13 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Vehicle",
+  "enabled": 1,
+  "modified": "2025-05-26 12:09:30.180120",
+  "module": "Garage Management",
+  "name": "vehicle.js",
+  "script": "frappe.ui.form.on('Vehicle', {\n    refresh: function(frm) {\n        // Add custom button to create job card\n        if (!frm.doc.__islocal) {\n            frm.add_custom_button(__('Create Job Card'), function() {\n                frappe.route_options = {\n                    'vehicle': frm.doc.name\n                };\n                frappe.new_doc('Garage Job Card');\n            });\n        }\n    },\n});",
+  "view": "Form"
+ }
+]
