@@ -6,6 +6,8 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "job_details_tab",
+  "column_break_fnyw",
   "naming_series",
   "job_card_details",
   "job_card_id",
@@ -23,13 +25,16 @@
   "customer",
   "customer_name",
   "contact_number",
+  "email",
   "vehicle_condition",
   "odometer_reading",
   "fuel_level",
+  "customer_complaint",
   "column_break_3",
   "service_type",
-  "customer_complaint",
+  "photos_before",
   "initial_inspection_notes",
+  "services_parts_tab",
   "service_assignment",
   "assigned_technician",
   "technician_name",
@@ -48,12 +53,16 @@
   "other_charges",
   "discount_amount",
   "total_amount",
+  "work_progress_tab",
   "completion_details",
   "work_completed",
   "quality_check_notes",
   "column_break_6",
   "next_service_recommendation",
   "warranty_period",
+  "documentation_tab",
+  "photos_section",
+  "photos_after",
   "additional_info",
   "internal_notes",
   "sales_invoice",
@@ -83,16 +92,22 @@
    "default": "Draft",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_filter": 1,
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Status",
-   "options": "Draft\nConfirmed\nIn Progress\nCompleted\nDelivered\nCancelled",
+   "no_copy": 1,
+   "options": "Draft\nConfirmed\nIn Progress\nCompleted\nCancelled",
+   "read_only": 1,
    "reqd": 1
   },
   {
    "default": "Medium",
    "fieldname": "priority",
    "fieldtype": "Select",
+   "in_filter": 1,
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Priority",
    "options": "Low\nMedium\nHigh\nUrgent"
   },
@@ -111,7 +126,7 @@
    "fieldname": "expected_completion_date",
    "fieldtype": "Datetime",
    "label": "Expected Completion Date",
-   "reqd": 0
+   "mandatory_depends_on": "eval:doc.status === \"Confirmed\""
   },
   {
    "fieldname": "actual_completion_date",
@@ -127,7 +142,9 @@
   {
    "fieldname": "vehicle",
    "fieldtype": "Link",
+   "in_filter": 1,
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Vehicle",
    "options": "Vehicle",
    "reqd": 1
@@ -165,9 +182,11 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.vehicle",
    "fieldname": "contact_number",
    "fieldtype": "Data",
-   "label": "Contact Number"
+   "label": "Contact Number",
+   "options": "Phone"
   },
   {
    "fieldname": "vehicle_condition",
@@ -195,8 +214,7 @@
    "fieldname": "service_type",
    "fieldtype": "Select",
    "label": "Service Type",
-   "options": "Regular Maintenance\nRepair\nInspection\nWarranty\nAccident Repair",
-   "reqd": 0
+   "options": "Regular Maintenance\nRepair\nInspection\nWarranty\nAccident Repair"
   },
   {
    "fieldname": "customer_complaint",
@@ -217,8 +235,7 @@
    "fieldname": "assigned_technician",
    "fieldtype": "Link",
    "label": "Primary Technician",
-   "options": "Employee",
-   "reqd": 0
+   "options": "Employee"
   },
   {
    "fetch_from": "assigned_technician.employee_name",
@@ -235,6 +252,7 @@
    "fieldname": "service_advisor",
    "fieldtype": "Link",
    "label": "Service Advisor",
+   "mandatory_depends_on": "eval:doc.status === \"Confirmed\"",
    "options": "Employee"
   },
   {
@@ -259,6 +277,7 @@
    "fieldname": "services",
    "fieldtype": "Table",
    "label": "Services",
+   "mandatory_depends_on": "eval:doc.status === \"Confirmed\"",
    "options": "Job Card Service"
   },
   {
@@ -353,6 +372,7 @@
    "fieldname": "sales_invoice",
    "fieldtype": "Data",
    "label": "Sales Invoice",
+   "no_copy": 1,
    "read_only": 1
   },
   {
@@ -364,13 +384,70 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "photos_section",
+   "fieldtype": "Section Break",
+   "label": "Photos"
+  },
+  {
+   "fieldname": "photos_before",
+   "fieldtype": "Table",
+   "label": "Photos",
+   "mandatory_depends_on": "eval:doc.status === \"Draft\"",
+   "options": "Photos"
+  },
+  {
+   "fieldname": "photos_after",
+   "fieldtype": "Table",
+   "label": "Photos After",
+   "mandatory_depends_on": "eval:doc.status==\"In Progress\"",
+   "options": "Photos"
+  },
+  {
+   "fieldname": "job_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Job Details"
+  },
+  {
+   "fieldname": "services_parts_tab",
+   "fieldtype": "Tab Break",
+   "label": "Services & Parts"
+  },
+  {
+   "fieldname": "work_progress_tab",
+   "fieldtype": "Tab Break",
+   "label": "Work Progress"
+  },
+  {
+   "fieldname": "documentation_tab",
+   "fieldtype": "Tab Break",
+   "label": "Info"
+  },
+  {
+   "fieldname": "column_break_fnyw",
+   "fieldtype": "Column Break",
+   "hidden": 1
+  },
+  {
+   "depends_on": "eval:doc.vehicle",
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2025-05-26 13:44:51.163402",
+ "links": [
+  {
+   "group": "Invoices",
+   "link_doctype": "Sales Invoice",
+   "link_fieldname": "custom_garage_job_card"
+  }
+ ],
+ "modified": "2025-05-27 17:30:55.698631",
  "modified_by": "Administrator",
  "module": "Garage Management",
  "name": "Garage Job Card",
@@ -394,5 +471,26 @@
  "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Orange",
+   "title": "In Progress"
+  },
+  {
+   "color": "Green",
+   "title": "Completed"
+  },
+  {
+   "color": "Light Blue",
+   "title": "Confirmed"
+  },
+  {
+   "color": "Gray",
+   "title": "Draft"
+  },
+  {
+   "color": "Red",
+   "title": "Cancelled"
+  }
+ ]
 }

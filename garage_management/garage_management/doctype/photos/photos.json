@@ -23,7 +23,8 @@
    "fieldname": "image",
    "fieldtype": "Attach",
    "in_list_view": 1,
-   "label": "Car Image"
+   "label": "Car Image",
+   "reqd": 1
   },
   {
    "fieldname": "image_view",

@@ -139,7 +139,8 @@ app_license = "mit"
 
 doc_events = {
     "Sales Invoice":{
-        "on_cancel" : "garage_management.doc_events.sales_invoice_cancel"
+        "on_cancel" : "garage_management.doc_events.sales_invoice_cancel",
+        "on_trash" : "garage_management.doc_events.sales_invoice_cancel",
     }
 # 	"*": {
 # 		"on_update": "method",
@@ -255,4 +256,9 @@ fixtures = [
         "doctype": "Property Setter",
         "filters": {"module": "Garage Management"}
     },
+    {
+        "doctype":  "Workflow",
+    },
+    {"doctype": "Workflow Action Master"},
+    {"doctype": "Workflow State"}
 ]

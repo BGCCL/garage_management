@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.status == \"Completed\" and doc.email",
+ "creation": "2025-05-27 18:20:38.455887",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Garage Job Card",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Vehicle Service Completed</title>\n  <style>\n    body {\n      font-family: Arial, sans-serif;\n      background-color: #f4f6f8;\n      color: #333333;\n      margin: 0;\n      padding: 20px;\n    }\n    .container {\n      background-color: #ffffff;\n      padding: 30px;\n      max-width: 600px;\n      margin: auto;\n      border-radius: 8px;\n      box-shadow: 0 2px 5px rgba(0,0,0,0.1);\n    }\n    .header {\n      text-align: center;\n      color: #2c3e50;\n    }\n    .button {\n      display: inline-block;\n      margin-top: 20px;\n      padding: 10px 20px;\n      background-color: #007bff;\n      color: white;\n      text-decoration: none;\n      border-radius: 5px;\n    }\n    .footer {\n      font-size: 12px;\n      color: #777777;\n      text-align: center;\n      margin-top: 30px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <h2 class=\"header\">Your Vehicle Service is Complete!</h2>\n    <p>Dear {{doc.customer}},</p>\n    <p>We are pleased to inform you that the servicing of your vehicle (<strong>{{doc.vehicle_make_model}}</strong>, Registration No: <strong>{{doc.vehicle}}</strong>) has been successfully completed.</p>\n    <p>Our technicians have completed all the requested checks and services. Your vehicle is now ready for pickup at your convenience.</p>\n    <p>If you have any questions or need further assistance, feel free to reach out to us.</p>\n    <p>Thank you for choosing us!</p>\n  </div>\n</body>\n</html>\n",
+ "message_type": "HTML",
+ "modified": "2025-05-27 18:34:38.626546",
+ "modified_by": "Administrator",
+ "module": "Garage Management",
+ "name": "Garage Job Status",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_document_field": "email"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "subject": "Service of {{doc.vehicle_registration}} is {{doc.status}}",
+ "value_changed": "workflow_state"
+}

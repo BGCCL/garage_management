@@ -16,18 +16,20 @@ class GarageJobCard(Document):
 		from frappe.types import DF
 		from garage_management.garage_management.doctype.job_card_parts.job_card_parts import JobCardParts
 		from garage_management.garage_management.doctype.job_card_service.job_card_service import JobCardService
+		from garage_management.garage_management.doctype.photos.photos import Photos
 
 		actual_completion_date: DF.Datetime | None
 		actual_hours: DF.Float
 		amended_from: DF.Link | None
-		assigned_technician: DF.Link
+		assigned_technician: DF.Link | None
 		contact_number: DF.Data | None
 		customer: DF.Link | None
 		customer_complaint: DF.TextEditor | None
 		customer_name: DF.Data | None
 		discount_amount: DF.Currency
+		email: DF.Data | None
 		estimated_hours: DF.Float
-		expected_completion_date: DF.Datetime
+		expected_completion_date: DF.Datetime | None
 		fuel_level: DF.Literal["Empty", "1/4 Tank", "1/2 Tank", "3/4 Tank", "Full Tank"]
 		initial_inspection_notes: DF.TextEditor | None
 		internal_notes: DF.TextEditor | None
@@ -38,13 +40,15 @@ class GarageJobCard(Document):
 		odometer_reading: DF.Int
 		other_charges: DF.Currency
 		parts_used: DF.Table[JobCardParts]
+		photos_after: DF.Table[Photos]
+		photos_before: DF.Table[Photos]
 		priority: DF.Literal["Low", "Medium", "High", "Urgent"]
 		quality_check_notes: DF.TextEditor | None
-		sales_invoice: DF.Link | None
+		sales_invoice: DF.Data | None
 		service_advisor: DF.Link | None
 		service_type: DF.Literal["Regular Maintenance", "Repair", "Inspection", "Warranty", "Accident Repair"]
 		services: DF.Table[JobCardService]
-		status: DF.Literal["Draft", "Confirmed", "In Progress", "Completed", "Delivered", "Cancelled"]
+		status: DF.Literal["Draft", "Confirmed", "In Progress", "Completed", "Cancelled"]
 		technician_name: DF.Data | None
 		total_amount: DF.Currency
 		total_labor_cost: DF.Currency
@@ -150,16 +154,14 @@ def create_sales_invoice(job_card):
     # Add labor charges as service items
     for service in job_card_doc.services:
         if service.total_labor_cost > 0:
-            # You need to create service items in Item master for labor charges
-            labor_item_code = get_or_create_labor_item(service.service_category)
             
             invoice.append("items", {
-                "item_code": labor_item_code,
+                "item_code": service.service_item,
                 "item_name": f"Labor - {service.service_description}",
                 "description": f"Service: {service.service_description}\nCategory: {service.service_category}\nTime: {service.actual_time} hours\nTechnician: {service.technician}",
                 "qty": 1,
                 "uom": "Nos",
-                "rate": service.labor_rate or (service.total_labor_cost / (service.actual_time or 1)),
+                "rate": service.total_labor_cost,
                 "amount": service.total_labor_cost,
             })
     
@@ -191,9 +193,10 @@ def create_sales_invoice(job_card):
         })
     
     # Apply discount if any
+    invoice.taxes_and_charges = frappe.db.get_value("Sales Taxes and Charges Template",filters={"title":"Tanzania Tax","company":frappe.defaults.get_user_default("Company")}, fieldname="name")
     if job_card_doc.discount_amount > 0:
         invoice.discount_amount = job_card_doc.discount_amount
-        invoice.apply_discount_on = "Grand Total"
+        invoice.apply_discount_on = "Net Total"
     
     # Set additional invoice details
     invoice.remarks = f"Invoice for vehicle service - Job Card: {job_card_doc.name}\nVehicle: {job_card_doc.vehicle_registration} ({job_card_doc.vehicle_make_model})\nService Date: {job_card_doc.job_date}"
@@ -203,6 +206,9 @@ def create_sales_invoice(job_card):
     
     try:
         # Save the invoice
+        print(invoice.base_grand_total)
+        invoice.flags.ignore_permissions = True  # Ignore permissions for automated creation
+        # invoice.flags.ignore_validate = True  # Ignore validation for automated creation
         invoice.save()
         
         # Update job card with invoice reference
@@ -213,24 +219,6 @@ def create_sales_invoice(job_card):
     except Exception as e:
         frappe.throw(f"Error creating Sales Invoice: {str(e)}")
 
-def get_or_create_labor_item(service_category):
-    """Get or create labor item for specific service category"""
-    item_code = f"LABOR-{service_category.upper().replace(' ', '-')}"
-    
-    if not frappe.db.exists("Item", item_code):
-        # Create labor service item
-        item = frappe.new_doc("Item")
-        item.item_code = item_code
-        item.item_name = f"Labor - {service_category}"
-        item.item_group = "Services"  # You may need to create this item group
-        item.is_stock_item = 0
-        item.is_sales_item = 1
-        item.is_service_item = 1
-        item.stock_uom = "Nos"
-        item.description = f"Labor charges for {service_category} services"
-        item.save()
-    
-    return item_code
 
 def get_or_create_other_charges_item():
     """Get or create other charges item"""

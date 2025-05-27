@@ -1,0 +1,51 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-05-26 10:59:37.936122",
+  "name": "Approve",
+  "workflow_action_name": "Approve"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-05-26 10:59:37.938363",
+  "name": "Reject",
+  "workflow_action_name": "Reject"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-05-26 10:59:37.940347",
+  "name": "Review",
+  "workflow_action_name": "Review"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-05-27 09:22:46.629789",
+  "name": "Confirm",
+  "workflow_action_name": "Confirm"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-05-27 09:23:15.294279",
+  "name": "Start Job",
+  "workflow_action_name": "Start Job"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-05-27 09:23:56.339379",
+  "name": "Complete Job",
+  "workflow_action_name": "Complete Job"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-05-27 09:24:28.929155",
+  "name": "Cancel",
+  "workflow_action_name": "Cancel"
+ }
+]

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vehicle Service Completed</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      color: #333333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .header {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .footer {
+      font-size: 12px;
+      color: #777777;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="header">Your Vehicle Service is Complete!</h2>
+    <p>Dear {{doc.customer}},</p>
+    <p>We are pleased to inform you that the servicing of your vehicle (<strong>{{doc.vehicle_make_model}}</strong>, Registration No: <strong>{{doc.vehicle}}</strong>) has been successfully completed.</p>
+    <p>Our technicians have completed all the requested checks and services. Your vehicle is now ready for pickup at your convenience.</p>
+    <p>If you have any questions or need further assistance, feel free to reach out to us.</p>
+    <p>Thank you for choosing us!</p>
+  </div>
+</body>
+</html>
