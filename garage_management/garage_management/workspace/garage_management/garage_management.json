@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"bgWBqazlhq\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Customer</span>\",\"col\":12}},{\"id\":\"Cdr4lfFyzl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer List\",\"col\":3}},{\"id\":\"MfhzZaWVZl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Create Customer\",\"col\":3}},{\"id\":\"vgqm_HglzN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"fSV5vyiPht\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Vehicle <br></b></span>\",\"col\":12}},{\"id\":\"THC3Oxke9I\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vehicle List\",\"col\":3}},{\"id\":\"GeYheeK36v\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Add Vehicle\",\"col\":3}},{\"id\":\"zux8KDz2--\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ynGrk-ilHC\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Job Card <br></b></span>\",\"col\":12}},{\"id\":\"UP2oZT0ayi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Garage Job List\",\"col\":3}},{\"id\":\"ic2eYf1bZz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Create a Job\",\"col\":3}},{\"id\":\"JEQO77SUvy\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3cDEyGc7R1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Invoices <br></b></span>\",\"col\":6}},{\"id\":\"BYgiJlHOXn\",\"type\":\"header\",\"data\":{\"text\":\"<b><span class=\\\"h5\\\"></span><span class=\\\"h4\\\">Tools and Parts </span><span class=\\\"h4\\\"></span></b>\",\"col\":6}},{\"id\":\"F7iSM9uXtc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Invoice List\",\"col\":6}},{\"id\":\"zDRDU8x6fh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Services\",\"col\":6}}]",
+ "content": "[{\"id\":\"bgWBqazlhq\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Customer</span>\",\"col\":12}},{\"id\":\"Cdr4lfFyzl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer List\",\"col\":3}},{\"id\":\"MfhzZaWVZl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Create Customer\",\"col\":3}},{\"id\":\"vgqm_HglzN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"fSV5vyiPht\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Vehicle <br></b></span>\",\"col\":12}},{\"id\":\"THC3Oxke9I\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vehicle List\",\"col\":3}},{\"id\":\"GeYheeK36v\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Add Vehicle\",\"col\":3}},{\"id\":\"zux8KDz2--\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ynGrk-ilHC\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Job Card <br></b></span>\",\"col\":12}},{\"id\":\"UP2oZT0ayi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Garage Job List\",\"col\":3}},{\"id\":\"ic2eYf1bZz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Create a Job\",\"col\":3}},{\"id\":\"jnHxNAGxpA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report Job Summary\",\"col\":6}},{\"id\":\"JEQO77SUvy\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3cDEyGc7R1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Invoices <br></b></span>\",\"col\":6}},{\"id\":\"BYgiJlHOXn\",\"type\":\"header\",\"data\":{\"text\":\"<b><span class=\\\"h5\\\"></span><span class=\\\"h4\\\">Tools and Parts </span><span class=\\\"h4\\\"></span></b>\",\"col\":6}},{\"id\":\"F7iSM9uXtc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Invoice List\",\"col\":6}},{\"id\":\"zDRDU8x6fh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Services\",\"col\":6}}]",
  "creation": "2025-05-27 07:56:14.200267",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Garage Management",
  "links": [],
- "modified": "2025-05-27 11:05:15.639713",
+ "modified": "2025-05-28 09:47:35.090932",
  "modified_by": "Administrator",
  "module": "Garage Management",
  "name": "Garage Management",
@@ -56,6 +56,14 @@
    "link_to": "Vehicle",
    "stats_filter": "[]",
    "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Report Job Summary",
+   "link_to": "Job Summary",
+   "report_ref_doctype": "Garage Job Card",
+   "type": "Report"
   },
   {
    "color": "Cyan",
