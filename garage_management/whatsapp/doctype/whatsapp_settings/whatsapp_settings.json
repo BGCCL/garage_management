@@ -1,0 +1,102 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-05-28 15:00:42.458974",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "section_break_fgse",
+  "token",
+  "business_id",
+  "url",
+  "webhook_verify_token",
+  "column_break_hwmn",
+  "phone_id",
+  "app_id",
+  "version"
+ ],
+ "fields": [
+  {
+   "description": "Enter the access token provided by the Meta Developer Portal.",
+   "fieldname": "token",
+   "fieldtype": "Password",
+   "label": "Token",
+   "length": 250
+  },
+  {
+   "description": "Enter the base URL for accessing the Meta API endpoints.",
+   "fieldname": "url",
+   "fieldtype": "Data",
+   "label": "API Base URL"
+  },
+  {
+   "fieldname": "version",
+   "fieldtype": "Data",
+   "label": "Version"
+  },
+  {
+   "description": "Enter the ID of the phone number associated with your WhatsApp Business Account.",
+   "fieldname": "phone_id",
+   "fieldtype": "Data",
+   "label": "Phone ID"
+  },
+  {
+   "description": "Enter the unique identifier associated with your business account on the Meta platform.",
+   "fieldname": "business_id",
+   "fieldtype": "Data",
+   "label": "Business ID"
+  },
+  {
+   "description": "Enter a token that will be used to verify the authenticity of incoming web hooks.",
+   "fieldname": "webhook_verify_token",
+   "fieldtype": "Data",
+   "label": "Webhook Verify Token"
+  },
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "description": "Enter the ID of your application or service that will be using the Meta API.",
+   "fieldname": "app_id",
+   "fieldtype": "Data",
+   "label": "App ID"
+  },
+  {
+   "fieldname": "section_break_fgse",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_hwmn",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-05-28 16:33:41.802763",
+ "modified_by": "Administrator",
+ "module": "Whatsapp",
+ "name": "WhatsApp Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

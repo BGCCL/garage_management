@@ -152,23 +152,36 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"garage_management.tasks.all"
-# 	],
-# 	"daily": [
-# 		"garage_management.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"garage_management.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"garage_management.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"garage_management.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+    "all": [
+        "garage_management.utils.trigger_whatsapp_notifications_all"
+    ],
+    "hourly": [
+        "garage_management.utils.trigger_whatsapp_notifications_hourly"
+    ],
+    "hourly_long": [
+        "garage_management.utils.trigger_whatsapp_notifications_hourly_long"
+    ],
+    "daily": [
+        "garage_management.utils.trigger_whatsapp_notifications_daily",
+        "garage_management.whatsapp.doctype.whatsapp_notification.whatsapp_notification.trigger_notifications",
+    ],
+    "daily_long": [
+        "garage_management.utils.trigger_whatsapp_notifications_daily_long",
+    ],
+    "weekly": [
+        "garage_management.utils.trigger_whatsapp_notifications_weekly",
+    ],
+    "weekly_long": [
+        "garage_management.utils.trigger_whatsapp_notifications_weekly_long",
+    ],
+    "monthly": [
+        "garage_management.utils.trigger_whatsapp_notifications_monthly",
+    ],
+    "monthly_long": [
+        "garage_management.utils.trigger_whatsapp_notifications_monthly_long",
+    ],
+}
 
 # Testing
 # -------
