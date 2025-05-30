@@ -180,6 +180,7 @@ function show_invoice_preview(frm, summary) {
                     if (r.message) {
                         frappe.msgprint(__('Sales Invoice {0} created successfully', [r.message]));
                         frm.reload_doc();
+                        frappe.set_route('Form', 'Sales Invoice', r.message);
                     }
                 }
             });
