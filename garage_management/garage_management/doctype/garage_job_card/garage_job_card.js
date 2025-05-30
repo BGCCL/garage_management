@@ -3,8 +3,9 @@
 
 frappe.ui.form.on('Garage Job Card', {
     before_workflow_action: function (frm) {
-        check_mandatory_fields(frm)
-
+        if (frm.doc.docstatus !== 1) {
+            check_mandatory_fields(frm)
+        }
     },
     refresh: function (frm) {
         // Custom buttons based on status
@@ -32,6 +33,23 @@ frappe.ui.form.on('Garage Job Card', {
                     if (r.message) {
                         let vehicle = r.message;
                         frm.set_value('vehicle_make_model', vehicle.make + ' ' + vehicle.model);
+                    }
+                }
+            });
+        }
+        if (frm.doc.customer) {
+            frappe.call({
+                method: 'frappe.client.get_value',
+                args: {
+                    doctype: 'Customer',
+                    filters: { name: frm.doc.customer },
+                    fieldname: 'email_id'
+                },
+                callback: function (r) {
+                    console.log(r);
+                    if (r.message) {
+                        let customer = r.message;
+                        frm.set_value('email', customer.email_id);
                     }
                 }
             });

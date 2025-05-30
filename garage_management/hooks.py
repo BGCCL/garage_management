@@ -63,6 +63,13 @@ app_license = "mit"
 # role_home_page = {
 # 	"Role": "home_page"
 # }
+import frappe
+if frappe.db.get_single_value("Navbar Settings", "app_logo"):
+    website_context = {
+        "favicon": frappe.db.get_single_value("Navbar Settings", "app_logo"),   
+        "splash_image": frappe.db.get_single_value("Navbar Settings", "app_logo")
+
+    }
 
 # Generators
 # ----------
